@@ -10,11 +10,11 @@ from setuptools import find_packages, setup, Command
 # Package meta-data.
 NAME = 'contuino_server'
 DESCRIPTION = 'Server accepting connections from boards running contuino client generated script.'
-#URL = 'https://github.com/me/myproject'
+URL = 'https://github.com/lukamilosevic/contuino_server'
 EMAIL = 'lukamilosevic.py@gmail.com'
 AUTHOR = 'Luka Milosevic'
 REQUIRES_PYTHON = '>=3.6.0'
-VERSION = '0.1.4dev'
+VERSION = '0.1.5dev'
 
 # What packages are required for this module to be executed?
 REQUIRED = [
@@ -79,7 +79,7 @@ class UploadCommand(Command):
         # self.status('Pushing git tags…')
         # os.system('git tag v{0}'.format(about['__version__']))
         # os.system('git push --tags')
-        
+
         sys.exit()
 
 
@@ -92,8 +92,8 @@ setup(
     author=AUTHOR,
     author_email=EMAIL,
     python_requires=REQUIRES_PYTHON,
-    #url=URL,
-    packages=find_packages(exclude=('tests','nosetests')),
+    # url=URL,
+    packages=find_packages(exclude=('tests', 'nosetests')),
     # If your package is a single module, use this instead of 'packages':
     # py_modules=['mypackage'],
 

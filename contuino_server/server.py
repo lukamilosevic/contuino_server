@@ -2,7 +2,7 @@
 
 from contuino_core import Board, Action, Events, Sensors
 from flask import Flask, request, redirect, jsonify, render_template
-from .flaskrun import flaskrun
+from flaskrun import flaskrun
 import argparse
 import json
 import sys
@@ -11,23 +11,23 @@ boards = []
 
 app = Flask(__name__)
 
-# TODO timestamp on each post
 
 @app.route('/')
 def projects():
-    return render_template("index.html", boards = get_boards())
+    return render_template("index.html")
+
 
 @app.route("/contuino/api/boards", methods=['GET'])
 def boards_api():
-	return get_boards()
+    return get_boards()
 
 
 @app.route("/contuino/api/boards", methods=['POST'])
 def post_board():
     board_data = request.json
-    print(board_data)
-    # TODO checks
-    board_id = find_board_index(board_data.get('user_hash'))
+    board_username = board_data.get('username')
+    print(board_username)
+    board_id = find_board_index(board_username)
     board = make_board(board_data)
     if board_id == -1:
         boards.append(board)
@@ -38,7 +38,7 @@ def post_board():
 
 def make_board(board_data):
     board = Board()
-    board.user_hash = board_data.get('user_hash')
+    board.username = board_data.get('username')
     board.name = str(board_data.get('name'))
     board.message = str(board_data.get('message'))
     board.actions = []
@@ -49,11 +49,12 @@ def make_board(board_data):
     return board
 
 
-def find_board_index(user_hash):
+def find_board_index(username):
     for i, board in enumerate(boards):
-        if board.user_hash == user_hash:
+        if board.username == username:
             return i
     return -1
+
 
 def get_boards():
     tmp_boards = []

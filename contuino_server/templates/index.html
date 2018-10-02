@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>test</title>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+	<title>Contuino</title>
 </head>
 <body>
 
-<div class="boards">
-    <pre>{{ boards }}</pre>
-</div>
+<pre id="json"></pre>
+ 
+<script>
+(function() {
+    setInterval(function(){
+    $.getJSON( "/contuino/api/boards", function( json ) {
+      console.log( "JSON Data: " + json.boards);
+      document.getElementById("json").innerHTML = JSON.stringify(JSON.parse(json.boards), undefined, 2);
+     });
+    },50)
+})();
+</script>
 
 </body>
 </html>
