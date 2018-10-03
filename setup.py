@@ -7,6 +7,10 @@ from shutil import rmtree
 
 from setuptools import find_packages, setup, Command
 
+# MONGODB SETUP: install mongodb, 
+# run md \data\db ; run mongod.exe from install dir
+# run mongo.exe (shell) as admin and run use contuino
+
 # Package meta-data.
 NAME = 'contuino_server'
 DESCRIPTION = 'Server accepting connections from boards running contuino client generated script.'
@@ -14,11 +18,11 @@ URL = 'https://github.com/lukamilosevic/contuino_server'
 EMAIL = 'lukamilosevic.py@gmail.com'
 AUTHOR = 'Luka Milosevic'
 REQUIRES_PYTHON = '>=3.6.0'
-VERSION = '0.1.5dev'
+VERSION = '0.1.6dev'
 
 # What packages are required for this module to be executed?
 REQUIRED = [
-    # 'requests',
+    'Flask', 'Flask-PyMongo',
 ]
 
 # What packages are optional?

@@ -15,8 +15,8 @@
 (function() {
     setInterval(function(){
     $.getJSON( "/contuino/api/boards", function( json ) {
-      console.log( "JSON Data: " + json.boards);
-      document.getElementById("json").innerHTML = JSON.stringify(JSON.parse(json.boards), undefined, 2);
+      console.log(json);
+      document.getElementById("json").innerHTML = JSON.stringify(json, undefined, 2);
      });
     },50)
 })();
